@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: "Work Sans", sans-serif;
+}
+.header{
+    background:#103713;
+    
+}
+
+.navitems{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    margin-left: 50rem;
+}
+.navitem {
+    margin-bottom: 1.3rem;
+    margin-top: 1.3rem;
+    
+}
+.navitem a{
+    text-decoration: none;
+    background-color: #fffdf5;
+    list-style: none;
+    padding: .5rem;
+    font-size: 1.2rem;
+    border-radius: .4rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: #000;
+    transition: ease-in-out .2s ;
+    
+}
+.navitem a:hover{
+    background-color: #e2dbd0;
+    
+}
