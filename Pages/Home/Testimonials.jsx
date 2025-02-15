@@ -2,7 +2,7 @@ import "./Home.css"
 import profile1 from "../../src/assets/profile1.jpg"
 const Testimonials = () => {
     return (
-      <section>
+      <section className="testimonials">
         <div className="test-title">
           <h1 className="title">Testimonials</h1>
           <h2 className="subtitle">what our beneficiaries say about us</h2>

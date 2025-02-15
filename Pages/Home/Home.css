@@ -33,9 +33,15 @@
 .cta a:hover{
     background-color: #e2dbd0;
 }
+.testimonials{
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),url("../../src/assets/bcg4.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 .title {
     text-transform: capitalize;
-    color: #000;
+    color: #fffdf5;
     font-size: 2.4rem;
   }
   .test-title {
@@ -45,7 +51,7 @@
     align-items: center;
   }
   .subtitle {
-    color: #000;
+    color: #fffdf5;
     text-transform: capitalize;
     font-size: 1.8rem;
   }
