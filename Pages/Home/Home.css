@@ -1,4 +1,38 @@
 
+.hero{
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url("../../src/assets/bcg.jpeg");
+    height: 90vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.hero-text{
+    font-size: 3rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    text-align: center;
+    color: #fffdf5;
+    margin-bottom: 2rem;
+}
+.cta a{
+    text-decoration: none;
+    background-color: #fffdf5;
+    padding: .5rem;
+    font-size: 1.2rem;
+    border-radius: .4rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: #000;
+    transition: ease-in-out .2s;
+}
+.cta a:hover{
+    background-color: #e2dbd0;
+}
 .title {
     text-transform: capitalize;
     color: #000;

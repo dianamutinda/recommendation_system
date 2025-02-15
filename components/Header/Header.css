@@ -20,12 +20,12 @@ body{
 .navitem {
     margin-bottom: 1.3rem;
     margin-top: 1.3rem;
+    list-style: none;
     
 }
 .navitem a{
     text-decoration: none;
     background-color: #fffdf5;
-    list-style: none;
     padding: .5rem;
     font-size: 1.2rem;
     border-radius: .4rem;
