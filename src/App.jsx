@@ -1,17 +1,19 @@
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer";
-/**import Signin from "../Pages/Authentication/Signin";
-import Signup from "../Pages/Authentication/Signup";**/
-import Hero from "../Pages/Home/Hero";
-import About from "../Pages/Home/About";
-import Testimonials from "../Pages/Home/Testimonials";
+import Signin from "../Pages/Authentication/Signin";
+import Signup from "../Pages/Authentication/Signup";
+import Home from "../Pages/Home/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 const app = () =>{
   return(
     <>
+    <BrowserRouter>
     <Header/>
-    <Hero/>
-    <About/>
-    <Testimonials/>
+    <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/signin" element={<Signin/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+    </Routes></BrowserRouter>
     <Footer/>
     </>
   )
