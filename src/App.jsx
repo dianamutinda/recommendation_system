@@ -1,4 +1,5 @@
 import Header from "../components/Header/Header"
+import Footer from "../components/Footer/Footer";
 /**import Signin from "../Pages/Authentication/Signin";
 import Signup from "../Pages/Authentication/Signup";**/
 import Hero from "../Pages/Home/Hero";
@@ -11,6 +12,7 @@ const app = () =>{
     <Hero/>
     <About/>
     <Testimonials/>
+    <Footer/>
     </>
   )
 }
