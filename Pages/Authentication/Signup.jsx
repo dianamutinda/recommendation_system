@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 import './Authentication.css';
 
 const SignUpSchema = Yup.object().shape({
@@ -19,12 +20,7 @@ const SignUpSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Please confirm your password'),
-  profession: Yup.string()
-    .required('Current profession is required'),
-  experience: Yup.string()
-    .required('Years of experience is required'),
-  interests: Yup.string()
-    .required('Career interests are required'),
+ 
 });
 
 const SignUpForm = () => {
@@ -48,9 +44,7 @@ const SignUpForm = () => {
             email: '',
             password: '',
             confirmPassword: '',
-            profession: '',
-            experience: '',
-            interests: '',
+            
           }}
           validationSchema={SignUpSchema}
           onSubmit={handleSubmit}
@@ -101,50 +95,12 @@ const SignUpForm = () => {
                 <ErrorMessage name="confirmPassword" component="div" className="error-message" />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="profession">Current Profession</label>
-                <Field
-                  type="text"
-                  name="profession"
-                  className={`form-input ${errors.profession && touched.profession ? 'error' : ''}`}
-                  placeholder="Enter your current profession"
-                />
-                <ErrorMessage name="profession" component="div" className="error-message" />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="experience">Years of Experience</label>
-                <Field
-                  as="select"
-                  name="experience"
-                  className={`form-input ${errors.experience && touched.experience ? 'error' : ''}`}
-                >
-                  <option value="">Select experience</option>
-                  <option value="0-2">0-2 years</option>
-                  <option value="3-5">3-5 years</option>
-                  <option value="6-10">6-10 years</option>
-                  <option value="10+">10+ years</option>
-                </Field>
-                <ErrorMessage name="experience" component="div" className="error-message" />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="interests">Career Interests</label>
-                <Field
-                  as="textarea"
-                  name="interests"
-                  className={`form-input ${errors.interests && touched.interests ? 'error' : ''}`}
-                  placeholder="Describe your career interests"
-                />
-                <ErrorMessage name="interests" component="div" className="error-message" />
-              </div>
-
               <button type="submit" className="submit-button" disabled={isSubmitting}>
                 {isSubmitting ? 'Creating Account...' : 'Create Account'}
               </button>
 
               <div className="login-link">
-                Already have an account? <a href="/login">Log in</a>
+                Already have an account? <Link to="/signin">Sign In</Link>
               </div>
             </Form>
           )}
