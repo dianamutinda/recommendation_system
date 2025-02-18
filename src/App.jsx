@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import Signin from "../Pages/Authentication/Signin";
 import Signup from "../Pages/Authentication/Signup";
 import Home from "../Pages/Home/Home";
+import System from "../Pages/System/System";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 const app = () =>{
   return(
@@ -13,8 +14,10 @@ const app = () =>{
         <Route path="/" element={<Home/>}/>
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/system" element={<System/>}/>
     </Routes></BrowserRouter>
     <Footer/>
+    
     </>
   )
 }

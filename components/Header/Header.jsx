@@ -15,6 +15,9 @@ const Header = () =>{
                     <li className="navitem">
                         <Link to="/signin">sign in</Link>
                         </li>
+                        <li className="navitem">
+                        <Link to="/system">system</Link>
+                        </li>
 
                 </ul>
             </nav>
