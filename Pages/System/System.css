@@ -1,0 +1,292 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f5f9f5;
+    padding: 2rem;
+  }
+  
+  .dashboard-wrapper {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .dashboard-wrapper h2 {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  .dashboard-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+  }
+  
+  .profile-section {
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .form-input {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  }
+  
+  .submit-btn {
+    background-color: #2e7d32;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #1b5e20;
+  }
+  
+  .recommendations-section {
+    padding: 1rem;
+  }
+  
+  .recommendations-section h3 {
+    color: #2e7d32;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .career-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .career-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .career-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .career-header h4 {
+    color: #2e7d32;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .match-percentage {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .career-description {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .career-requirements {
+    margin-bottom: 1rem;
+  }
+  
+  .career-requirements h5 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .career-requirements ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .career-requirements li {
+    color: #666;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .career-requirements li::before {
+    content: "•";
+    color: #4caf50;
+    margin-right: 0.5rem;
+  }
+  
+  .career-salary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .subject-grades {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .interest-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .interest-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2e7d32;
+  }
+  
+  .interest-item label {
+    font-size: 0.9rem;
+    color: #444;
+  }
+  
+  .university-badge {
+    background-color: #2e7d32;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .requirements-section,
+  .career-paths {
+    margin: 1rem 0;
+  }
+  
+  .requirements-section h5,
+  .career-paths h5 {
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .requirements-section ul,
+  .career-paths ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .requirements-section li,
+  .career-paths li {
+    color: #666;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .requirements-section li::before,
+  .career-paths li::before {
+    content: "•";
+    color: #4caf50;
+    margin-right: 0.5rem;
+  }
+  
+  .course-fees {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+    color: #2e7d32;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .dashboard-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .recommendations-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .subject-grades,
+    .interests-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
