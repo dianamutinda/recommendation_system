@@ -5,10 +5,14 @@ import { Link } from 'react-router-dom';
 import './Authentication.css';
 
 const SignUpSchema = Yup.object().shape({
-  fullName: Yup.string()
+  firstName: Yup.string()
     .min(2, 'Name is too short')
-    .max(50, 'Name is too long')
+    .max(10, 'Name is too long')
     .required('Full name is required'),
+  lastName: Yup.string()
+    .min(2, 'Name is too short')
+    .max(10, 'Name is too long')
+    .required('Last name is required'),
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
