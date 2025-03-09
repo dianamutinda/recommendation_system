@@ -1,9 +1,15 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import {ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Authentication.css';
 
+const apiUrl = import.meta.env.VITE_API_URL_ROOT;
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, 'Name is too short')
@@ -28,76 +34,148 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUpForm = () => {
-  const handleSubmit = (values, { setSubmitting }) => {
-    // Handle form submission here
-    console.log(values);
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 500);
+  const [error, setError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = async(values) => {
+    try {
+      const response = await fetch(`${apiUrl}/api/users/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+      const data = await response.json();
+      console.log(data);
+      
+      if (data.success === true){
+        console.log(response);
+        
+        toast.success("User registered successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: { backgroundColor: 'green' , color: 'white' },
+          
+        });
+        
+        setError(false)
+        setTimeout(() => navigate('/signin'), 3000);
+        
+      } else {
+        setError(data.message)
+        if (data.message === "Email already exists") {
+          toast.error("Email already exists", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: { backgroundColor: 'red' , color: 'white' },
+            
+          })
+        }
+        
+        
+      }
+    } catch (error) {
+      setError(error.message)
+    }
   };
 
+  const formik = useFormik({
+    initialValues:{
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      
+    },
+    validationSchema:SignUpSchema,
+    onSubmit:handleSubmit
+  })
   return (
     <div className="signup-container">
+      <ToastContainer />
       <div className="signup-form-wrapper">
         <h2>Create Your Career Account</h2>
         <p className="form-subtitle">Start your journey to career success</p>
-        
-        <Formik
-          initialValues={{
-            fullName: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            
-          }}
-          validationSchema={SignUpSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting, errors, touched }) => (
-            <Form className="signup-form">
+          
+          
+            <form className="signup-form" onSubmit={formik.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="fullName">Full Name</label>
-                <Field
+                <label htmlFor="firstName">First Name</label>
+                <input
                   type="text"
-                  name="fullName"
-                  className={`form-input ${errors.fullName && touched.fullName ? 'error' : ''}`}
-                  placeholder="Enter your full name"
+                  name="firstName"
+                  placeholder="Enter your first name"
+                  className={`form-input`}
+                  id="firstName"
+                value={formik.values.firstName}
+                onChange={formik.handleChange}
                 />
-                <ErrorMessage name="fullName" component="div" className="error-message" />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="lastName">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Enter your last name"
+                  className={`form-input`}
+                  id="lastName"
+                value={formik.values.lastName}
+                onChange={formik.handleChange}
+                />
               </div>
 
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <Field
+                <input
                   type="email"
                   name="email"
-                  className={`form-input ${errors.email && touched.email ? 'error' : ''}`}
                   placeholder="Enter your email"
+                  className={`form-input`}
+                  id="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
                 />
-                <ErrorMessage name="email" component="div" className="error-message" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Field
+                <input
                   type="password"
                   name="password"
-                  className={`form-input ${errors.password && touched.password ? 'error' : ''}`}
                   placeholder="Create a password"
+                  id="password"
+                  className={`form-input`}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
                 />
-                <ErrorMessage name="password" component="div" className="error-message" />
               </div>
-
               <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <Field
+                <label htmlFor="confirmpassword">Confirm Password</label>
+                <input
                   type="password"
                   name="confirmPassword"
-                  className={`form-input ${errors.confirmPassword && touched.confirmPassword ? 'error' : ''}`}
-                  placeholder="Confirm your password"
+                  placeholder="Confirm password"
+                  id="confirmPassword"
+                  className={`form-input`}
+                  value={formik.values.confirmPasswordpassword}
+                  onChange={formik.handleChange}
                 />
-                <ErrorMessage name="confirmPassword" component="div" className="error-message" />
               </div>
+
+             
 
               <button type="submit" className="submit-button" disabled={isSubmitting}>
                 {isSubmitting ? 'Creating Account...' : 'Create Account'}
@@ -106,9 +184,9 @@ const SignUpForm = () => {
               <div className="login-link">
                 Already have an account? <Link to="/signin">Sign In</Link>
               </div>
-            </Form>
-          )}
-        </Formik>
+            </form>
+          
+        
       </div>
     </div>
   );

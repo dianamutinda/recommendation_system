@@ -17,6 +17,8 @@ const app = () =>{
         <Route path="/career-guide" element={<System/>}/>
         <Route path="/chatbot" element={<Chatbot/>}/>
         <Route path="/courses" element={<Courses/>}/>
+        <Route path="/signin" element={<Signin/>}/>
+        <Route path="/signup" element={<Signup/>}/>
     </Routes></BrowserRouter>
     <Footer/>
     
