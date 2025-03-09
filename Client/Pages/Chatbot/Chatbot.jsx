@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import './Chatbot.css';
 
 const Chatbot = () => {
@@ -9,23 +10,8 @@ const Chatbot = () => {
         }
     ]);
     const [inputMessage, setInputMessage] = useState('');
+    const [loading, setLoading] = useState(false);
     const messagesEndRef = useRef(null);
-
-    const careerResponses = {
-        keywords: {
-            'career path': 'Consider your interests, skills, and values when choosing a career path. I can help you explore different options based on your preferences.',
-            'resume': 'A strong resume should highlight your relevant skills, experience, and achievements. Make sure to tailor it for each job application.',
-            'interview': 'Prepare for interviews by researching the company, practicing common questions, and preparing examples of your experiences.',
-            'skills': 'Focus on both technical and soft skills. Technical skills vary by field, but soft skills like communication and problem-solving are valuable in any career.',
-            'salary': 'Salary expectations vary by industry, location, and experience level. Research industry standards and consider the total compensation package.',
-            'internship': 'Internships provide valuable experience and networking opportunities. Look for opportunities that align with your career goals.',
-            'education': 'Consider your career goals when choosing educational paths. Some careers require specific degrees or certifications.',
-            'networking': 'Build your professional network through LinkedIn, industry events, and professional associations.',
-            'job search': 'Use multiple channels for job searching: company websites, job boards, LinkedIn, and professional networks.',
-            'industry': 'Research industry trends and growth prospects to make informed career decisions.'
-        },
-        default: "I'm not sure about that specific topic. Could you rephrase your question or ask about career paths, skills, education, job search, or interview preparation?"
-    };
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -35,31 +21,33 @@ const Chatbot = () => {
         scrollToBottom();
     }, [messages]);
 
-    const findBestResponse = (input) => {
-        const lowercaseInput = input.toLowerCase();
-        for (const [keyword, response] of Object.entries(careerResponses.keywords)) {
-            if (lowercaseInput.includes(keyword)) {
-                return response;
-            }
-        }
-        return careerResponses.default;
-    };
-
-    const handleSendMessage = (e) => {
+    const handleSendMessage = async (e) => {
         e.preventDefault();
         if (!inputMessage.trim()) return;
 
-        // Add user message
         const newMessages = [...messages, { text: inputMessage, sender: 'user' }];
         setMessages(newMessages);
+        setLoading(true);
 
-        // Generate bot response
-        const botResponse = findBestResponse(inputMessage);
-        setTimeout(() => {
-            setMessages([...newMessages, { text: botResponse, sender: 'bot' }]);
-        }, 500);
+        try {
+            const response = await axios.post("http://127.0.0.1:5000/chatbot", 
+                     {message: inputMessage }, // Data payload
+                     {headers: { "Content-Type": "application/json" } } // Headers
+                
+            );
+            console.log("API Response:", response.data);
+
+            if (response.data.success) {
+                setMessages([...newMessages, { text: response.data.response, sender: 'bot' }]);
+            } else {
+                setMessages([...newMessages, { text: "Sorry, I couldn't understand.", sender: 'bot' }]);
+            }
+        } catch (error) {
+            setMessages([...newMessages, { text: "Error connecting to the server.", sender: 'bot' }]);
+        }
 
         setInputMessage('');
+        setLoading(false);
     };
 
     return (
@@ -88,8 +76,8 @@ const Chatbot = () => {
                     placeholder="Type your career question here..."
                     className="message-input"
                 />
-                <button type="submit" className="send-button">
-                    Send
+                <button type="submit" className="send-button" disabled={loading}>
+                    {loading ? "Loading..." : "Send"}
                 </button>
             </form>
         </div>
