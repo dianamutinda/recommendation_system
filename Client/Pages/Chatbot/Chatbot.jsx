@@ -5,7 +5,7 @@ import './Chatbot.css';
 const Chatbot = () => {
     const [messages, setMessages] = useState([
         {
-            text: "Hello! I'm your Career Guide Assistant. How can I help you today?",
+            text: "Hello! I'm your Career Guide Assistant. Please input your skills and interests",
             sender: 'bot'
         }
     ]);

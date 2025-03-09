@@ -34,7 +34,6 @@ const Dashboard = () => {
   const [recommendations, setRecommendations] = useState([
     {
       course: 'Bachelor of Medicine and Surgery',
-      university: 'University of Nairobi',
       cluster: 'Sciences',
       requirements: {
         meanGrade: 'A-',
@@ -42,11 +41,10 @@ const Dashboard = () => {
         keySubjects: ['Biology', 'Chemistry', 'Mathematics/Physics']
       },
       career_paths: ['Medical Doctor', 'Surgeon', 'Medical Researcher'],
-      estimated_fees: 'KES 600,000 per year'
+      
     },
     {
       course: 'Bachelor of Business Science',
-      university: 'Strathmore University',
       cluster: 'Business',
       requirements: {
         meanGrade: 'B+',
@@ -54,11 +52,10 @@ const Dashboard = () => {
         keySubjects: ['Mathematics', 'English', 'Business Studies']
       },
       career_paths: ['Business Analyst', 'Investment Banker', 'Management Consultant'],
-      estimated_fees: 'KES 450,000 per year'
+      
     },
     {
       course: 'Bachelor of Computer Science',
-      university: 'JKUAT',
       cluster: 'Technology',
       requirements: {
         meanGrade: 'B+',
@@ -66,7 +63,7 @@ const Dashboard = () => {
         keySubjects: ['Mathematics', 'Physics', 'Computer Studies']
       },
       career_paths: ['Software Developer', 'Systems Analyst', 'Data Scientist'],
-      estimated_fees: 'KES 180,000 per year'
+      
     }
   ]);
 
@@ -169,7 +166,7 @@ const Dashboard = () => {
                       onChange={(e) => handleGradeChange('sciences', e.target.value)}
                     >
                       <option value="">Grade</option>
-                      {['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C'].map(grade => (
+                      {['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D'].map(grade => (
                         <option key={grade} value={grade}>{grade}</option>
                       ))}
                     </select>
@@ -240,7 +237,6 @@ const Dashboard = () => {
                     </ul>
                   </div>
                   <div className="course-fees">
-                    <span>Estimated Fees:</span>
                     <span>{rec.estimated_fees}</span>
                   </div>
                 </div>
